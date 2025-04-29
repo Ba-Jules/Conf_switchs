@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Générateur de Configuration Switch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .radio-group {
+            margin-bottom: 15px;
+        }
+        .file-drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: border 0.3s;
+        }
+        .file-drop-area.highlight {
+            border-color: #4CAF50;
+        }
+        .file-input {
+            display: none;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab.active {
+            background-color: #f0f0f0;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .messages {
+            margin-bottom: 20px;
+        }
+        .message {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .message.error {
+            background-color: #ffecec;
+            border: 1px solid #f5aca6;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Générateur de Configuration Switch à partir du DEX</h1>
+        
+        {% if get_flashed_messages() %}
+        <div class="messages">
+            {% for message in get_flashed_messages() %}
+            <div class="message error">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <form method="post" enctype="multipart/form-data" id="config-form">
+            <div class="tabs">
+                <div class="tab active" id="file-tab-btn" onclick="switchTab('file-tab')">Fichier DEX</div>
+                <div class="tab" id="text-tab-btn" onclick="switchTab('text-tab')">Texte DEX</div>
+            </div>
+            
+            <div id="file-tab" class="tab-content active">
+                <div class="form-group">
+                    <label>Glisser-déposer votre fichier DEX (Excel ou CSV):</label>
+                    <div class="file-drop-area" id="drop-area">
+                        <p>Glissez votre fichier DEX ici ou cliquez pour sélectionner</p>
+                        <input type="file" id="dex_file" name="dex_file" class="file-input" accept=".xlsx,.xls,.csv">
+                    </div>
+                    <p id="file-name">Aucun fichier sélectionné</p>
+                </div>
+            </div>
+            
+            <div id="text-tab" class="tab-content">
+                <div class="form-group">
+                    <label for="dex_content">Coller le contenu du DEX ici:</label>
+                    <textarea id="dex_content" name="dex_content" placeholder="Coller le contenu du DEX ici..."></textarea>
+                </div>
+            </div>
+            
+            <div class="radio-group">
+                <label>Choisir le fournisseur d'IA:</label>
+                <input type="radio" id="anthropic" name="ai_provider" value="anthropic" checked>
+                <label for="anthropic">Claude (Anthropic)</label>
+                
+                <input type="radio" id="openai" name="ai_provider" value="openai">
+                <label for="openai">GPT (OpenAI)</label>
+            </div>
+            
+            <button type="submit" id="submit-btn">Générer la Configuration</button>
+        </form>
+        
+        <div id="status" class="status">
+            <p><strong>Statut:</strong> <span id="status-text">En attente...</span></p>
+            <p>La génération de la configuration peut prendre jusqu'à 1 minute, veuillez patienter.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Gestion des onglets
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Activer l'onglet sélectionné
+            if (tabId === 'file-tab') {
+                document.getElementById('file-tab-btn').classList.add('active');
+            } else {
+                document.getElementById('text-tab-btn').classList.add('active');
+            }
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // Gestion du glisser-déposer
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('dex_file');
+        const fileNameDisplay = document.getElementById('file-name');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropArea.classList.add('highlight');
+        }
+        
+        function unhighlight() {
+            dropArea.classList.remove('highlight');
+        }
+        
+        dropArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            fileInput.files = files;
+            updateFileName();
+        }
+        
+        // Mise à jour de l'affichage du nom de fichier
+        fileInput.addEventListener('change', updateFileName);
+        
+        function updateFileName() {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = `Fichier sélectionné: ${fileInput.files[0].name}`;
+            } else {
+                fileNameDisplay.textContent = "Aucun fichier sélectionné";
+            }
+        }
+        
+        // Cliquer sur la zone de dépôt pour ouvrir le sélecteur de fichier
+        dropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // Afficher l'état de progression lors de la soumission
+        document.getElementById('config-form').addEventListener('submit', function(e) {
+            // Afficher l'état
+            document.getElementById('status').style.display = 'block';
+            document.getElementById('status-text').textContent = "Génération en cours...";
+            
+            // Désactiver le bouton de soumission
+            document.getElementById('submit-btn').disabled = true;
+            document.getElementById('submit-btn').textContent = "Génération en cours...";
+        });
+    </script>
+</body>
+</html>

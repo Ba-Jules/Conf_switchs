@@ -1,0 +1,104 @@
+Stack Switch  A5700 48XG  - nubpucl127.nubp01 – nubpucl128.nubp01	Unnamed: 1	Unnamed: 2	Unnamed: 3	Unnamed: 4	Unnamed: 5	Unnamed: 6	Unnamed: 7	Unnamed: 8	Unnamed: 9	Unnamed: 10	Unnamed: 11	Unnamed: 12	Unnamed: 13	Unnamed: 14	Unnamed: 15	Unnamed: 16	Unnamed: 17	Unnamed: 18	Unnamed: 19	Unnamed: 20	Unnamed: 21	Unnamed: 22	Unnamed: 23
+Nom Equipement	0	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	0	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Fonction	Commutateur LAN ADMIN	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	Commutateur LAN ADMIN	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Constructeur, Modèle et options	HPE 5901AF (JL864A)
+HPE Power Supply (JD362B) x2
+HPE Fan Tray (JL838A) x2
+HPE Cable DAC 40G QSFP+ QSFP+ 1m : JG326A
+
+	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	HPE 5901AF (JL864A)
+HPE Power Supply (JD362B) x2
+HPE Fan Tray (JL838A) x2
+HPE Cable DAC 40G QSFP+ QSFP+ 1m : JG326A
+
+	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+STACK (Member ID et Priorité)  ou NA (si pas de stack)	 Member ID : 1 ;   Priorité : 15	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	 Member ID : 2 ;   Priorité : 14	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Hostname  et Prompt (*0)	0	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	En STACK	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Adr IP/Masq :
+Interface :
+Route par defaut :	172.22.64.11 /24 Gw 172.22.64.1 (VLAN 2024)	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Version firmware	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Liste des VLANS	VLAN ADMIN_OPENSTACK	ADMIN SWITCH	VLAN CONSOLE_OPENSTACK	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+nan	2022	2024	2027	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+NTP, TFTP, SYSLOG	NTP : 172.20.82.161	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+SNMP	Communauté read : « rsprv »  , Suppression Communauté « public »,   SNMP Get autorisés, Pas d'accés SNMP en ecriture, Pas d'envoi de TRAPS SNMP	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+nan	Paramétrage version(s) : V1 et V2 (pas de V3)	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Services	SSH : actif, TELNET : Disable, HTTP : Disable , NDP : Disable	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+nan	GVRP : Disable, CDP : Disable, LLDP : Enable	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Spanning Tree	Enable, (MSTP)  - ROOT PORT = AGG1  -    BPDU-PROTECTION= ENABLE	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+MAD (uniquement pour les stacks)	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Comptes utilisateurs
+et droits	admin / admsnant	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Port console	AVOCENT LTR  nubpmak002 port 37	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	AVOCENT LTR  nubquak002 port 38	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+Port Managt  (A5500HI ouA5900)	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan	cf tableau précédent stack gigabits	nan	nan	nan	nan	nan	nan	nan	nan	nan	nan
+CUD
+(Create/Update/Delete)	Port (*1)	Port physique	Agg. Liens (N° et type)(*2)	PVID (Vlan natif du port )(*3)
+Vlan non taggé	Liste Vlans autorisés
+(*5)
+	Vitesse / Mode : (Auto  ou 100Mbps-FD] (*8)	Câble
+[CU/FO]
+(*9)	Etat Spanning Tree du port
+[Enable/Disable/Edge]
+(*10)	Nom d'équipement connecté (*11)	Port Equipt connecté (*12)	Commentaire Utilisation port	nan	Port
+(Type et n°) (*1)	Port physique	Agg. Liens (N° et type)(*2)	PVID (Vlan natif du port )(*3)
+Vlan non taggé	Liste Vlans autorisés
+(*5)
+	Vitesse / Mode : (Auto  ou 100Mbps-FD] (*8)	Câble
+[CU/FO]
+(*9)	Etat Spanning Tree du port
+[Enable/Disable/Edge]
+(*10)	Nom d'équipement connecté (*11)	Port Equipt connecté (*12)	Commentaire Utilisation port
+c	GE 1/0/1	1	nan	4093	4093	AUTO 	CU, 1G	DISABLE	0	1	port stack MAD	nan	GE 2/0/1	1	nan	4093	4093	AUTO 	CU, 1G	DISABLE	0	1	port stack MAD
+nan	GE 1/0/2	2	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	réservé exploitation	nan	GE 2/0/2	2	nan	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	réservé exploitation
+c	GE 1/0/3	3	nan	2027	-	AUTO	CU, 1G	Edge	nubpush228.nubp01	idrac	idrac	nan	GE 2/0/3	3	nan	2027	-	AUTO	CU, 1G	Edge	nubpush238.nubp01	idrac	idrac
+c	GE 1/0/4	4	nan	2027	nan	AUTO	CU, 1G	Edge	nubpush230.nubp01	idrac	idrac	nan	GE 2/0/4	4	nan	2027	-	AUTO	CU, 1G	Edge	nubpush240.nubp01	idrac	idrac
+c	GE 1/0/5	5	nan	2027	nan	AUTO	CU, 1G	Edge	nubpush232.nubp01	idrac	idrac	nan	GE 2/0/5	5	nan	2027	-	AUTO	CU, 1G	Edge	nubpush242.nubp01	idrac	idrac
+c	GE 1/0/6	6	nan	2027	-	AUTO	CU, 1G	Edge	nubpush234.nubp01	idrac	idrac	nan	GE 2/0/6	6	nan	2027	-	AUTO	CU, 1G	Edge	nubpush244.nubp01	idrac	idrac
+c	GE 1/0/7	7	nan	2027	-	AUTO	CU, 1G	Edge	nubpush236.nubp01	idrac	idrac	nan	GE 2/0/7	7	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/8	8	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/8	8	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/9	9	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/9	9	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/10	10	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/10	10	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/11	11	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/11	11	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/12	12	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/12	12	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/13	13	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/13	13	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/14	14	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/14	14	nan	nan	nan	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+c	GE 1/0/15	15	nan	2022	-	AUTO	CU, 1G	Edge	nubpush228.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/15	15	nan	2022	-	AUTO	CU, 1G	Edge	nubpush228.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/16	16	nan	2022	-	AUTO	CU, 1G	Edge	nubpush230.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/16	16	nan	2022	-	AUTO	CU, 1G	Edge	nubpush230.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/17	17	nan	2022	-	AUTO	CU, 1G	Edge	nubpush232.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/17	17	nan	2022	-	AUTO	CU, 1G	Edge	nubpush232.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/18	18	nan	2022	-	AUTO	CU, 1G	Edge	nubpush234.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/18	18	nan	2022	-	AUTO	CU, 1G	Edge	nubpush234.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/19	19	nan	2022	-	AUTO	CU, 1G	Edge	nubpush236.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/19	19	nan	2022	-	AUTO	CU, 1G	Edge	nubpush236.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/20	20	nan	2022	-	AUTO	CU, 1G	Edge	nubpush238.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/20	20	nan	2022	-	AUTO	CU, 1G	Edge	nubpush238.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/21	21	nan	2022	-	AUTO	CU, 1G	Edge	nubpush240.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/21	21	nan	2022	-	AUTO	CU, 1G	Edge	nubpush240.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/22	22	nan	2022	-	AUTO	CU, 1G	Edge	nubpush242.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/22	22	nan	2022	-	AUTO	CU, 1G	Edge	nubpush242.nubp01	  PCI-Slot3-P1-1G	admin
+c	GE 1/0/23	23	nan	2022	-	AUTO	CU, 1G	Edge	nubpush244.nubp01	PCI2-CM-P1-1G	admin	nan	GE 2/0/23	23	nan	2022	-	AUTO	CU, 1G	Edge	nubpush244.nubp01	  PCI-Slot3-P1-1G	admin
+nan	GE 1/0/24	24	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/24	24	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/25	25	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/25	25	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/26	26	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/26	26	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/27	27	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/27	27	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/28	28	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/28	28	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/29	29	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/29	29	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/30	30	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/30	30	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/31	31	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/31	31	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/32	32	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/32	32	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/33	33	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/33	33	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/34	34	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/34	34	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/35	35	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/35	35	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/36	36	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/36	36	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/37	37	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/37	37	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/38	38	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/38	38	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/39	39	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/39	39	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/40	40	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/40	40	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/41	41	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/41	41	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/42	42	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/42	42	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/43	43	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/43	43	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/44	44	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/44	44	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/45	45	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/45	45	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+nan	GE 1/0/46	46	-	nan	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan	nan	GE 2/0/46	46	-	-	-	AUTO	CU, 1G	enable	PORT SHUT	nan	nan
+c	GE 1/0/47	47	nan	2024	-	AUTO	CU, 1G	edge	nan	Port Management	Management du switch applis/stockage	nan	GE 2/0/47	47	-	2024	-	AUTO	CU, 1G	Edge	nan	Port Management	Management du switch applis/stockage
+c	GE 1/0/48	48	Lacp 1	4094	2022,2024,2027	AUTO	CU, 1G	enable,	nubpucl161	Port 14	interco switch vers salle 4.01 rack O24	nan	GE 2/0/48	48	Lacp 1	4094	2022,2024,2027	Auto	CU, 1G	enable	nubpucl162	Port 14	interco switch vers salle 4.01 rack O24
+nan	XGE1/0/49	SFP+ 49	nan	nan	nan	AUTO	FO, SFP+10G	enable	PORT SHUT	nan	nan	nan	XGE2/0/49	SFP+ 49	nan	nan	nan	nan	FO, SFP+10G	enable	PORT SHUT	nan	nan
+nan	XGE1/0/50	SFP+ 50	nan	nan	nan	AUTO	FO, SFP+10G	enable	PORT SHUT	nan	nan	nan	XGE2/0/50	SFP+ 50	nan	nan	nan	nan	FO, SFP+10G	enable	PORT SHUT	nan	nan
+nan	XGE1/0/51	SFP+ 51	nan	nan	nan	AUTO	FO, SFP+10G	enable	PORT SHUT	nan	nan	nan	XGE2/0/51	SFP+ 51	nan	nan	nan	nan	FO, SFP+10G	enable	PORT SHUT	nan	nan
+nan	XGE1/0/52	SFP+ 52	nan	nan	nan	AUTO	FO, SFP+10G	enable	PORT SHUT	nan	nan	nan	XGE2/0/52	SFP+ 52	nan	nan	nan	nan	FO, SFP+10G	enable	PORT SHUT	nan	nan
+nan	FGE1/0/51	QSFP+ 53	NA (Port Stack IRF)	nan	nan	AUTO	Cable DAC QSFP+ QSFP+	nan	Autre switch du stack	QSFP+ 54	STACK en 40Go Cable DAC X240 40Go QSFP+ Référence : JH697A	nan	FGE2/0/51	QSFP+ 53	NA (Port Stack IRF)	nan	nan	AUTO	Cable DAC QSFP+	nan	Autre switch du stack	QSFP+ 54	STACK en 40Go Cable DAC X240 40Go QSFP+ Référence : JH697A
+nan	FGE1/0/52	QSFP+ 54	NA (Port Stack IRF)	nan	nan	AUTO	Cable DAC QSFP+ QSFP+	nan	Autre switch du stack	QSFP+ 53	STACK en 40Go Cable DAC X240 40Go QSFP+ Référence : JH697A	nan	FGE2/0/52	QSFP+ 54	NA (Port Stack IRF)	nan	nan	AUTO	Cable DAC QSFP+	nan	Autre switch du stack	QSFP+ 53	STACK en 40Go Cable DAC X240 40Go QSFP+ Référence : JH697A

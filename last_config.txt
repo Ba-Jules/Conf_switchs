@@ -1,0 +1,1 @@
+Erreur API 400: {"type":"error","error":{"type":"invalid_request_error","message":"anthropic-version: header is required"}}

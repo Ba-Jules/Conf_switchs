@@ -1,0 +1,383 @@
+Voici la première partie de la configuration CLI Comware générée à partir du document d'exploitation (DEX) fourni :
+
+#Configuration système et IRF
+hostname nubpucl127-s
+easy-irf member 1 renumber 1 domain 019097051 priority 15 irf-port1 fortygigeethernet1/0/51 irf-port2 fortygigeethernet1/0/52
+easy-irf member 1 renumber 2 domain 019097051 priority 14 irf-port1 fortygigeethernet2/0/51 irf-port2 fortygigeethernet2/0/52
+
+#Configuration des VLANs
+vlan 2022
+ description VLAN ADMIN_OPENSTACK
+ name VLAN ADMIN_OPENSTACK
+vlan 2024
+ description ADMIN SWITCH
+ name ADMIN SWITCH  
+vlan 2027
+ description VLAN CONSOLE_OPENSTACK
+ name VLAN CONSOLE_OPENSTACK
+vlan 4093
+ description Vlan MAD-BFD
+ name Vlan MAD-BFD
+vlan 4094
+ description Vlan Poubelle
+ name Vlan Poubelle
+
+#Interfaces VLAN et routage
+interface vlan-interface2022
+ ip address 172.22.64.11 255.255.255.0
+interface vlan-interface2024
+ ip address 172.22.64.11 255.255.255.0
+interface vlan-interface2027
+ ip address 172.22.64.11 255.255.255.0
+ip route-static 0.0.0.0 0.0.0.0 172.22.64.1 preference 60
+
+#Services réseau et sécurité
+ntp-service enable
+ntp-service unicast-server 172.20.82.161 version 4
+clock timezone CEST add 1
+clock summer-time ETE 02:00:00 March last Sunday 03:00:00 October last Sunday 01:00:00
+info-center loghost 172.20.82.161 facility local7
+info-center timestamp loghost no-year-date
+snmp-agent
+undo snmp-agent sys-info version v3
+snmp-agent sys-info version v1 v2c
+snmp-agent community read rsprv
+snmp-agent group v1 rsprv
+snmp-agent group v2c rsprv
+undo ip http enable
+undo ip https enable 
+undo telnet server enable
+lldp global enable
+undo gvrp
+undo ndp enable
+
+#Comptes utilisateurs et interfaces d'accès
+local-user admsnant class manage
+ password simple admsnant
+ service-type ssh terminal
+ authorization-attribute user-role network-admin
+local-user usrsnant class manage
+ password simple usrsnant
+ service-type ssh terminal
+ authorization-attribute user-role network-operator
+ssh server enable
+ssh server compatible-ssh1x enable
+public-key local create rsa
+ssh user admsnant service-type stelnet authentication-type password
+ssh user usrsnant service-type stelnet authentication-type password
+user-interface aux 0 1
+ authentication-mode scheme
+ user-role network-admin
+user-interface vty 0 15
+ authentication-mode scheme
+ user-role network-admin
+ protocol inbound ssh
+
+#Configuration MAD-BFD
+interface vlan-interface4093
+ mad bfd enable
+ mad ip address 192.168.1.1 255.255.255.0 member 1
+ mad ip address 192.168.1.2 255.255.255.0 member 2
+
+#Spanning Tree et autres protocoles
+stp global enable
+stp bpdu-protection
+stp pathcost-standard dot1t
+
+#Configuration des interfaces d'agrégation
+
+interface Bridge-Aggregation1
+ description Agrégation 1 - VLAN ADMIN_OPENSTACK, ADMIN SWITCH, VLAN CONSOLE_OPENSTACK
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 2022,2024,2027
+ port trunk pvid vlan 4094
+ link-aggregation mode dynamic
+ stp edged-port
+
+interface Bridge-Aggregation2
+ description Agrégation 2 - VLAN ADMIN_OPENSTACK, ADMIN SWITCH, VLAN CONSOLE_OPENSTACK 
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 2022,2024,2027
+ port trunk pvid vlan 4094
+ link-aggregation mode dynamic
+ stp edged-port
+
+#Configuration des interfaces physiques
+
+interface Ten-GigabitEthernet1/0/1
+ description MAD-port1
+ port access vlan 4093
+ undo shutdown
+ undo stp enable
+
+interface Ten-GigabitEthernet2/0/1
+ description MAD-port2
+ port access vlan 4093
+ undo shutdown
+ undo stp enable
+
+interface Ten-GigabitEthernet1/0/2
+ description réservé exploitation
+ shutdown
+
+interface Ten-GigabitEthernet2/0/2
+ description réservé exploitation
+ shutdown
+
+interface Ten-GigabitEthernet1/0/3
+ description nubpush228.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/3
+ description nubpush238.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/4
+ description nubpush230.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/4
+ description nubpush240.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/5
+ description nubpush232.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/5
+ description nubpush242.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/6
+ description nubpush234.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/6
+ description nubpush244.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/7
+ description nubpush236.nubp01-idrac
+ port access vlan 2027
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/7
+ shutdown
+
+interface range Ten-GigabitEthernet1/0/8 to Ten-GigabitEthernet1/0/14
+ shutdown
+
+interface range Ten-GigabitEthernet2/0/8 to Ten-GigabitEthernet2/0/14
+ shutdown
+
+interface Ten-GigabitEthernet1/0/15
+ description nubpush228.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/15
+ description nubpush228.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/16
+ description nubpush230.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/16
+ description nubpush230.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/17
+ description nubpush232.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/17
+ description nubpush232.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/18
+ description nubpush234.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/18
+ description nubpush234.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/19
+ description nubpush236.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/19
+ description nubpush236.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/20
+ description nubpush238.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/20
+ description nubpush238.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/21
+ description nubpush240.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/21
+ description nubpush240.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/22
+ description nubpush242.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/22
+ description nubpush242.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/23
+ description nubpush244.nubp01-PCI2-CM-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/23
+ description nubpush244.nubp01-PCI-Slot3-P1-1G
+ port access vlan 2022
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface range Ten-GigabitEthernet1/0/24 to Ten-GigabitEthernet1/0/46
+ shutdown
+
+interface range Ten-GigabitEthernet2/0/24 to Ten-GigabitEthernet2/0/46
+ shutdown
+
+interface Ten-GigabitEthernet1/0/47
+ description Port Management
+ port access vlan 2024
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/47
+ description Port Management
+ port access vlan 2024
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet1/0/48
+ description nubpucl161-Port 14
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 2022,2024,2027
+ port trunk pvid vlan 4094
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface Ten-GigabitEthernet2/0/48
+ description nubpucl162-Port 14
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 2022,2024,2027
+ port trunk pvid vlan 4094
+ speed auto
+ undo shutdown
+ stp edged-port
+
+interface FortyGigE1/0/51
+ description STACK Port 1
+ shutdown
+
+interface FortyGigE2/0/51
+ description STACK Port 1
+ shutdown
+
+interface FortyGigE1/0/52
+ description STACK Port 2
+ shutdown
+
+interface FortyGigE2/0/52
+ description STACK Port 2
+ shutdown
+
+save

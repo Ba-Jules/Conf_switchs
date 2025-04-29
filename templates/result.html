@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Configuration Générée</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .buttons {
+            margin: 20px 0;
+        }
+        button, .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button {
+            background-color: #f44336;
+        }
+        .messages {
+            margin-bottom: 20px;
+        }
+        .message {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .message.error {
+            background-color: #ffecec;
+            border: 1px solid #f5aca6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Configuration Générée</h1>
+        
+        {% if get_flashed_messages() %}
+        <div class="messages">
+            {% for message in get_flashed_messages() %}
+            <div class="message error">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="buttons">
+            <button onclick="copyToClipboard()">Copier la Configuration</button>
+            <a href="/download" class="button">Télécharger la Configuration</a>
+            <button class="back-button" onclick="window.location.href='/'">Nouvelle Configuration</button>
+        </div>
+        
+        <pre id="config">{{ config }}</pre>
+        
+        <script>
+            function copyToClipboard() {
+                const configElement = document.getElementById('config');
+                const textArea = document.createElement('textarea');
+                textArea.value = configElement.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Configuration copiée dans le presse-papiers!');
+            }
+        </script>
+    </div>
+</body>
+</html>
